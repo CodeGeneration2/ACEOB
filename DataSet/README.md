@@ -36,12 +36,15 @@ All of the above files are in txt format. The better alternative solution code i
 Since applications that generate code directly from natural language descriptions are the most promising and relevant code generation datasets are too scarce, we derived the code generation dataset ECG-CG from the ECG dataset. The ECG-CG dataset is similar to the APPS dataset (Hendrycks et al., 2021). We tried to extend the use of the ECG-CG dataset by dividing it into four versions based on whether it contains better alternate code and segmented problem text, and we present the specifics of the four versions in Appendix C.
 
 Dataset version number              	Does it contain a better alternate code               	Does it contain split question text
+
 ECG-CG_1             	             	             		×             	             	             	             		×
 ECG-CG_2	            	             	             	√            	             	      	      	             		×
 ECG-CG_3            	             	             		×	            	                       	 	 	             		√
 ECG-CG_4	            	             	             	√	            	                      	 	  	             	√
 
 Table 3: Four versions of ECG-CG dataset partitioning specifics.
+
+![image](https://user-images.githubusercontent.com/95161813/175927994-e92d4923-3eb4-4034-b43b-4c8b37343af5.png)
 
 
 
