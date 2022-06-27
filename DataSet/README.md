@@ -1,4 +1,4 @@
-# Efficient-Code-Generation-with-E-Code
+# DataSet
 
 ## ECG
   The ECG dataset is divided into train, dev, and test in a ratio of 8:1:1. The train has 3021 folders, dev and test each have 377 folders, each folder corresponds to a problem, and the folders are sorted according to the difficulty of the problem from easy to challenging. We describe in detail what each problem folder covers in Appendix A. And the derived datasets ECG-CG, ECG-mini, and ECG-clone are divided into datasets in the same way as ECG.
