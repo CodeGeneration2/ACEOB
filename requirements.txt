@@ -1,0 +1,5 @@
+# Used for evaluation and some common for train too
+numpy
+torch>=1.10.0
+transformers>=4.15.0
+
