@@ -15,3 +15,9 @@ See the Readme file in [DataSet/README](https://github.com/CodeGeneration2/Effic
 ## How to Use
 
 The training prediction code is in the [Training prediction code](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Training%20prediction%20code) folder, and the details of how to use it are in the [Training prediction code/README](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/blob/main/Training%20prediction%20code/README.md)
+
+
+## Diagrammatic figure
+
+The diagrammatic figure is in the [Diagrammatic figure](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Diagrammatic%20figure) folder.
+
