@@ -35,6 +35,7 @@ We use the following command to run and train.
     train.py
 
 ## Run time predictor
+### train
 The run time predictor model allows us to train the run time predictor and its code is in the Run time predictor folder.
 
 You can run the train.py file directly for training.
@@ -42,3 +43,11 @@ You can run the train.py file directly for training.
 We use the following command to run and train.
 
     train.py
+    
+    
+### Predictions
+You need to put the code you need to predict the time into the Code set to be predicted folder and then run the Predictive_generation_code.py file
+
+
+
+
