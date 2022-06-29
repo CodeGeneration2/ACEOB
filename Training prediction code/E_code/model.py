@@ -17,155 +17,155 @@ import torch
 # ######################################################## 搭建 全连接神经网络回归网络 #################################
 class Modle(nn.Module):
     # =========================================== 初始化 =======================#
-    def __init__(self,命令行参数):
+    def __init__(self,args):
         super(Modle, self).__init__()
 
-        # ============================ 如果有已经训练的本地模型， 则使用已经训练的本地模型 ===========================#
-        if 命令行参数.是否使用已训练本地模型:
-            print(f'\033[0:34m使用已训练本地模型，命令行参数.是否使用已训练本地模型：{命令行参数.是否使用已训练本地模型} \033[m')
+        # ============================ 如果有已经训练的本地model， 则使用已经训练的本地model ===========================#
+        if args.Whether_to_use_trained_local_mods:
+            print(f'\033[0:34m使用已训练本地model，args.Whether_to_use_trained_local_mods：{args.Whether_to_use_trained_local_mods} \033[m')
             # ---------------- 定义专家组:bert输出矩阵【批量尺寸，句子长度，词嵌入】 -----------#
             """ bert-tiny: 词嵌入维度128，最大长度512
             GPT-NEO125M: 词嵌入维度768，最大长度2048
             """
-            self.title_layer = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/标题层/")
-            self.问题描述主体层 = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/问题描述主体层/")
-            self.Input_description_layer = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/Input描述层/")
-            self.Output描述层 = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/Output描述层/")
-            self.输入输出样例测试和Note描述层 = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/输入输出样例测试和Note描述层/")
+            self.title_layer = BertModel.from_pretrained(f"{args.Generated_models}/title_layer/")
+            self.problem_description_subject_layer = BertModel.from_pretrained(f"{args.Generated_models}/problem_description_subject_layer/")
+            self.Input_description_layer = BertModel.from_pretrained(f"{args.Generated_models}/Input_Description_Layer/")
+            self.Output_Description_Layer = BertModel.from_pretrained(f"{args.Generated_models}/Output_Description_Layer/")
+            self.Input_output_sample_tests_and_Note_description_Layer = BertModel.from_pretrained(f"{args.Generated_models}/Input_output_sample_tests_and_Note_description_Layer/")
 
-            # ------------------------------- 专家组整合层 ------------------------------------#
-            self.专家组整合层 = BertModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/专家组整合层/")
+            # ------------------------------- Expert_Group_Integration_Layer ------------------------------------#
+            self.Expert_Group_Integration_Layer = BertModel.from_pretrained(f"{args.Generated_models}/Expert_Group_Integration_Layer/")
 
-            # ---------------------------------------- 全连接放大层 -----------------------#
-            self.全连接放大层 = torch.load(f"{命令行参数.已训练本地模型路径}/全连接放大层.pkl")
+            # ---------------------------------------- Fully_connected_amplification_layer -----------------------#
+            self.Fully_connected_amplification_layer = torch.load(f"{args.Generated_models}/Fully_connected_amplification_layer.pkl")
 
-            # ---------------------------------------- 低效代码层 ----------------------------------------
-            """代码层：使用GPT——NEO模型
+            # ---------------------------------------- Inefficient_code_layer ----------------------------------------
+            """代码层：使用GPT——NEOmodel
             """
-            self.低效代码层 = transformers.GPTNeoModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/低效代码层/")
-            self.高效代码层 = transformers.GPTNeoModel.from_pretrained(f"{命令行参数.已训练本地模型路径}/高效代码层/")
+            self.Inefficient_code_layer = transformers.GPTNeoModel.from_pretrained(f"{args.Generated_models}/Inefficient_code_layer/")
+            self.Efficient_code_layer = transformers.GPTNeoModel.from_pretrained(f"{args.Generated_models}/Efficient_code_layer/")
 
-            # ---------------------------------------- 编码器解码器自注意力层 ----------------------------------------#
+            # ---------------------------------------- Encoder_Decoder_Self_Attention_Layer ----------------------------------------#
             """ 自注意力层：（疑问测试）
             1，Q K V :   分开
             2,8个头改动
             3，是否加feedforward，全连接层  
             """
-            self.编码器解码器自注意力层 = torch.load(f"{命令行参数.已训练本地模型路径}/编码器解码器自注意力层.pkl")
+            self.Encoder_Decoder_Self_Attention_Layer = torch.load(f"{args.Generated_models}/Encoder_Decoder_Self_Attention_Layer.pkl")
 
-            # ---------------------------------------- 最终输出层 ----------------------------------------#
-            self.最终输出层 = transformers.GPTNeoForCausalLM.from_pretrained(f"{命令行参数.已训练本地模型路径}/最终输出层/")
+            # ---------------------------------------- Final_output_layer ----------------------------------------#
+            self.Final_output_layer = transformers.GPTNeoForCausalLM.from_pretrained(f"{args.Generated_models}/Final_output_layer/")
 
-        # ================================ 如果没有已经训练的 使用 初始模型 ================================#
+        # ================================ 如果没有已经训练的 使用 初始model ================================#
         else:
-            print(f'\033[0:34m 不 使用已训练本地模型，命令行参数.是否使用已训练本地模型：{命令行参数.是否使用已训练本地模型} \033[m')
+            print(f'\033[0:34m 不 使用已训练本地model，args.Whether_to_use_trained_local_mods：{args.Whether_to_use_trained_local_mods} \033[m')
             # --------------------- 定义专家组参数 --------------------------------#
-            Bert的参数 = BertConfig.from_json_file("Bert_tiny_weight/config.json")
+            Bert_parameters = BertConfig.from_json_file("Bert_tiny_weight/config.json")
 
             # ---------------- 定义专家组:bert输出矩阵【批量尺寸，句子长度，词嵌入】 -----------#
             """ bert-tiny: 词嵌入维度128，最大长度512
             GPT-NEO125M: 词嵌入维度768，最大长度2048
             """
-            self.title_layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert的参数)
-            self.问题描述主体层 = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert的参数)
-            self.Input_description_layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert的参数)
-            self.Output描述层 = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert的参数)
-            self.输入输出样例测试和Note描述层 = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert的参数)
+            self.title_layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert_parameters)
+            self.problem_description_subject_layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert_parameters)
+            self.Input_description_layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert_parameters)
+            self.Output_Description_Layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert_parameters)
+            self.Input_output_sample_tests_and_Note_description_Layer = BertModel.from_pretrained("Bert_tiny_weight/", config=Bert_parameters)
 
-            # ------------------------------- 专家组整合层 ------------------------------------#
+            # ------------------------------- Expert_Group_Integration_Layer ------------------------------------#
             """ 由于bert-tiny的最大长度是512，所以这里无法使用已经预训练的bert-tiny，所以从头开始训练"""
-            Bert的参数 = BertConfig.from_json_file("Bert_tiny_weight_Expert_group_integration_layer/config.json")
-            self.专家组整合层 = BertModel(config=Bert的参数)
+            Bert_parameters = BertConfig.from_json_file("Bert_tiny_weight_Expert_group_integration_layer/config.json")
+            self.Expert_Group_Integration_Layer = BertModel(config=Bert_parameters)
 
-            # ---------------------------------------- 全连接放大层 -----------------------#
-            self.全连接放大层 = nn.Linear(in_features=128, out_features=768, bias=True)
+            # ---------------------------------------- Fully_connected_amplification_layer -----------------------#
+            self.Fully_connected_amplification_layer = nn.Linear(in_features=128, out_features=768, bias=True)
 
-            # ---------------------------------------- 低效代码层 ----------------------------------------
-            """代码层：使用GPT——NEO模型
+            # ---------------------------------------- Inefficient_code_layer ----------------------------------------
+            """代码层：使用GPT——NEOmodel
             """
-            self.低效代码层 = transformers.GPTNeoModel.from_pretrained("EleutherAI/gpt-neo-125M")
-            self.高效代码层 = transformers.GPTNeoModel.from_pretrained("EleutherAI/gpt-neo-125M")
+            self.Inefficient_code_layer = transformers.GPTNeoModel.from_pretrained("EleutherAI/gpt-neo-125M")
+            self.Efficient_code_layer = transformers.GPTNeoModel.from_pretrained("EleutherAI/gpt-neo-125M")
 
-            # ---------------------------------------- 编码器解码器自注意力层 ----------------------------------------#
+            # ---------------------------------------- Encoder_Decoder_Self_Attention_Layer ----------------------------------------#
             """ 自注意力层：（疑问测试）
             1，Q K V :   分开
             2,8个头改动
             3，是否加feedforward，全连接层  
             """
-            self.编码器解码器自注意力层 = nn.MultiheadAttention(embed_dim=768, num_heads=48,batch_first=True)
+            self.Encoder_Decoder_Self_Attention_Layer = nn.MultiheadAttention(embed_dim=768, num_heads=48,batch_first=True)
 
-            # ---------------------------------------- 最终输出层 ----------------------------------------#
-            self.最终输出层 = transformers.GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")
+            # ---------------------------------------- Final_output_layer ----------------------------------------#
+            self.Final_output_layer = transformers.GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")
 
 
     # ################################################## 定义网络的向前传播路径 #########################################
-    def forward(self, 特征列表):
+    def forward(self, Feature_List):
         # ------------------------------- 分解 ------------------------------#
-        标题, 问题描述主体, Input描述, Output描述, 输入输出样例测试和Note描述, 某慢速代码, 标签代码 = 特征列表
+        title, problem_Description_Subject, Input_Description, Output_Description, Input_output_sample_tests_and_Note_description, certain_slow_code, label_code = Feature_List
 
         # ------------------------------- 定义5个专家组 ------------------------------#
         """输入：{input_ids：张量，attention_mask：张量}
-        输出：last_hidden_state：张量，[批量大小，序列长度，词嵌入维度]
+        输出：last_hidden_state：张量，[batch_size，序列长度，词嵌入维度]
         """
-        标题层输出 = self.title_layer(**标题).last_hidden_state
-        问题描述主体层输出 = self.问题描述主体层(**问题描述主体).last_hidden_state
-        Input描述层输出 = self.Input_description_layer(**Input描述).last_hidden_state
-        Output描述层输出 = self.Output描述层(**Output描述).last_hidden_state
-        输入输出样例测试和Note描述层输出 = self.输入输出样例测试和Note描述层(**输入输出样例测试和Note描述).last_hidden_state
+        title_layer_output = self.title_layer(**title).last_hidden_state
+        problem_description_subject_layer_output = self.problem_description_subject_layer(**problem_Description_Subject).last_hidden_state
+        Input_Description_Layer_output = self.Input_description_layer(**Input_Description).last_hidden_state
+        Output_Description_Layer_output = self.Output_Description_Layer(**Output_Description).last_hidden_state
+        Input_output_sample_tests_and_Note_description_Layer_output = self.Input_output_sample_tests_and_Note_description_Layer(**Input_output_sample_tests_and_Note_description).last_hidden_state
 
-        # -------------------------------------------- 专家组整合层(1,特征列表,128) ------------------------------------------#
-        专家输出联结 = torch.cat((标题层输出, 问题描述主体层输出, Input描述层输出, Output描述层输出 , 输入输出样例测试和Note描述层输出), dim=1)
-        if len(专家输出联结[0]) > 2048:
-            print(f'\033[0:34m 模型内部 截断 过大的，其长度为：{len(专家输出联结[0])} 。len(专家输出联结张量)>2048  033[m')
-            专家输出联结 = 专家输出联结[:,:2048,:]
+        # -------------------------------------------- Expert_Group_Integration_Layer(1,Feature_List,128) ------------------------------------------#
+        Expert_output_linkage = torch.cat((title_layer_output, problem_description_subject_layer_output, Input_Description_Layer_output, Output_Description_Layer_output , Input_output_sample_tests_and_Note_description_Layer_output), dim=1)
+        if len(Expert_output_linkage[0]) > 2048:
+            print(f'\033[0:34m model内部 截断 过大的，其长度为：{len(Expert_output_linkage[0])} 。len(Expert_output_linkage张量)>2048  033[m')
+            Expert_output_linkage = Expert_output_linkage[:,:2048,:]
 
-        # ---------------------------------------- 专家组整合层 -------------#
-        """输入：张量 [批量大小，序列长度2048，词嵌入维度128]
-        输出：[批量大小，序列长度2048，词嵌入维度128]
+        # ---------------------------------------- Expert_Group_Integration_Layer -------------#
+        """输入：张量 [batch_size，序列长度2048，词嵌入维度128]
+        输出：[batch_size，序列长度2048，词嵌入维度128]
         """
-        专家组输出 = self.专家组整合层(inputs_embeds=专家输出联结).last_hidden_state
+        Expert_Group_Output = self.Expert_Group_Integration_Layer(inputs_embeds=Expert_output_linkage).last_hidden_state
 
         """           ---------------------- 可以后放大，也可以先放大  ------------- 试试效果 ----------------"""
 
-        # ---------------------------------------- 全连接放大层 -------------#
-        """输入：张量 [批量大小，序列长度2048，词嵌入维度128]
-        输出：张量 [批量大小，序列长度2048，词嵌入维度768]
+        # ---------------------------------------- Fully_connected_amplification_layer -------------#
+        """输入：张量 [batch_size，序列长度2048，词嵌入维度128]
+        输出：张量 [batch_size，序列长度2048，词嵌入维度768]
         """
-        文本层输出 = self.全连接放大层(专家组输出)
+        Text_Layer_Output = self.Fully_connected_amplification_layer(Expert_Group_Output)
 
-        # ---------------------------------------- 低效代码层 -------------#
+        # ---------------------------------------- Inefficient_code_layer -------------#
         """输入：{input_ids：张量，attention_mask：张量}
-        输出：张量 [批量大小，序列长度2048，词嵌入维度768]
+        输出：张量 [batch_size，序列长度2048，词嵌入维度768]
         """
-        低效代码层输出 = self.低效代码层(**某慢速代码).last_hidden_state
+        Inefficient_code_layer_output = self.Inefficient_code_layer(**certain_slow_code).last_hidden_state
 
-        # ---------------------------------------- 编码器输出 -------------#
-        编码器输出 = torch.cat((文本层输出, 低效代码层输出), dim=1)
+        # ---------------------------------------- Encoder_output -------------#
+        Encoder_output = torch.cat((Text_Layer_Output, Inefficient_code_layer_output), dim=1)
 
-        # -------------------------------------------- 高效代码层 ----------------------------------------------------#
+        # -------------------------------------------- Efficient_code_layer ----------------------------------------------------#
         """输入：{input_ids：张量，attention_mask：张量}
-        输出：张量 [批量大小，序列长度2048，词嵌入维度768]
+        输出：张量 [batch_size，序列长度2048，词嵌入维度768]
         """
-        高效代码层输出 = self.高效代码层(**标签代码).last_hidden_state
+        Efficient_code_layer_output = self.Efficient_code_layer(**label_code).last_hidden_state
 
-        # -------------------------------------------- 编码器解码器自注意力层 -----------------------------------------#
+        # -------------------------------------------- Encoder_Decoder_Self_Attention_Layer -----------------------------------------#
         """输入：QKV
-        输出：张量 [批量大小，序列长度2048，词嵌入维度768]
+        输出：张量 [batch_size，序列长度2048，词嵌入维度768]
         """
-        编码器解码器自注意力层输出, attn_output_weights = self.编码器解码器自注意力层(高效代码层输出,编码器输出,编码器输出)
+        Encoder_Decoder_Self_Attention_Layer_output, attn_output_weights = self.Encoder_Decoder_Self_Attention_Layer(Efficient_code_layer_output,Encoder_output,Encoder_output)
 
-        # ---------------------------------------- 标签代码处理 ----------------------------------------#
-        标签张量 = 标签代码["input_ids"].clone().detach()
-        for i in range(len(标签张量)):
-            for j in range(len(标签张量[i])):
-                if 标签张量[i, j] == 0:
-                    标签张量[i, j] = -100
+        # ---------------------------------------- label_code处理 ----------------------------------------#
+        Label_Tensor = label_code["input_ids"].clone().detach()
+        for i in range(len(Label_Tensor)):
+            for j in range(len(Label_Tensor[i])):
+                if Label_Tensor[i, j] == 0:
+                    Label_Tensor[i, j] = -100
 
-        # ---------------------------------------- 最终输出层 ----------------------------------------#
-        最终输出 = self.最终输出层(inputs_embeds=编码器解码器自注意力层输出, labels=标签张量)
+        # ---------------------------------------- Final_output_layer ----------------------------------------#
+        Final_Output = self.Final_output_layer(inputs_embeds=Encoder_Decoder_Self_Attention_Layer_output, labels=Label_Tensor)
 
         # ----------------------------------- 输出 -------------------
-        return 最终输出
+        return Final_Output
 
 
 

@@ -109,7 +109,7 @@ def _T5_apply_mask(sample, mask, tokenizer, hide_sentinels=False):
     subsequent_mask_tokens = torch.logical_and(mask, prev_token_is_masked)
     # Magic formula. See https://github.com/huggingface/transformers/blob/master/src/transformers/tokenization_t5.py#L241
     # Note we do NOT need to subtract the number of tokens added with T5_new_tokens since
-    # Token化词表.vocab_size does NOT include those.
+    # tokenVocabulary.vocab_size does NOT include those.
     sentinel_idxs = tokenizer.vocab_size - torch.cumsum(first_mask_tokens, dim=0)
     
     sample = torch.where(

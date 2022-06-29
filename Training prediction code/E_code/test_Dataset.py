@@ -27,120 +27,113 @@ from tqdm import tqdm
 import json
 
 # ############################################################# 我的Dataset函数 #####################################
-class 测试集Dataset类(torch.utils.data.Dataset):
-    def __init__(self, 模型="EleutherAI/gpt-neo-125M", 最大Token数=2048, 数据集根路径="../../../数据集/test"):
+class Test_set_Dataset_class(torch.utils.data.Dataset):
+    def __init__(self, dataset_root_path="../ECG/test"):
 
-        self.模型 = 模型
+        self.Tokenized = transformers.GPT2Tokenizer.from_pretrained("GPT_Token/", pad_token="[PAD]", cls_token="[CLS]")
 
-        self.Token化词表 = transformers.GPT2Tokenizer.from_pretrained("GPT_Token/", pad_token="[PAD]", cls_token="[CLS]")
-
-        self.总数据列表 = []  # Should be set in 初始化函数()
+        self.total_Data_List = []  # Should be set in 初始化函数()
 
         # ================================= 初始化函数（将数据从本地导入） ==================#
-        self.从当前目录初始化函数(数据集根路径)
+        self.initialize_function_from_current_directory(dataset_root_path)
 
     # =========================================== 初始化函数（将数据从本地导入） =========================================#
-    def 从当前目录初始化函数(self, 数据集根路径):
+    def initialize_function_from_current_directory(self, dataset_root_path):
         """ 从本地导入数据
         返回：
-            self.总数据列表 = 总数据列表
+            self.total_Data_List = total_Data_List
         """
 
-        总数据列表 = []
+        total_Data_List = []
 
-        训练集列表 = os.listdir(f"{数据集根路径}")
+        training_list_sets = os.listdir(f"{dataset_root_path}")
         # ----------------------------------------- 导入数据 ------------------------------------------------------------#
         print('\033[0:34m======================== 导入 test_code 数据中... (具体是 将数据转化为ID) ====================\033[m')
-        for 某条 in tqdm(range(len(训练集列表))):
-        # for 某条 in tqdm(range(200)):
-        #for 某条 in tqdm(range(1,2)):
+        for i in tqdm(range(len(training_list_sets))):
+        # for i in tqdm(range(200)):
+        #for i in tqdm(range(1,2)):
 
             # ----------------------------------------------- 标签 --------------------------------#
-            with open(f"{数据集根路径}/{某条}/accepted.txt", 'r', encoding='UTF-8') as f:
-                标签代码 = f.read()
+            with open(f"{dataset_root_path}/{i}/accepted.txt", 'r', encoding='UTF-8') as f:
+                label_code = f.read()
 
             # -------------------------------- 删选 -----------------------------#
-            标签代码张量字典 = self.Token化词表(标签代码, return_tensors="pt")
-            if len(标签代码张量字典["input_ids"][0])>766:
-                print(f'\033[0:35m删选，过大的， 第 {某条} 条的长度为: {len(标签代码张量字典["input_ids"][0])}。标签代码张量字典["input_ids"]>2048 033[m')
+            label_code_dictionary = self.Tokenized(label_code, return_tensors="pt")
+            if len(label_code_dictionary["input_ids"][0])>766:
+                # print(f'\033[0:35m删选，过大的， 第 {i} 条的长度为: {len(label_code_dictionary["input_ids"][0])}。label_code_dictionary["input_ids"]>2048 033[m')
                 continue
 
             # ------------------------------- 缩进代码 ----------------------#
-            标签代码 = 缩进代码函数(标签代码)
+            label_code = Indent_code_functions(label_code)
 
-            # ------------------------------------------- 标题 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/标题.txt", 'r', encoding='UTF-8') as f:
-                标题 = f.read()
-            # ------------------------------------------- 问题描述主体 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/问题描述主体.txt", 'r', encoding='UTF-8') as f:
-                问题描述主体 = f.read()
-            # ------------------------------------------- Input描述 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/Input描述.txt", 'r', encoding='UTF-8') as f:
-                Input描述 = f.read()
-            # ------------------------------------------- Output描述 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/Output描述.txt", 'r', encoding='UTF-8') as f:
-                Output描述 = f.read()
+            # ------------------------------------------- title ---------------------------------#
+            with open(f"{dataset_root_path}/{i}/Title.txt", 'r', encoding='UTF-8') as f:
+                title = f.read()
+            # ------------------------------------------- problem_Description_Subject ---------------------------------#
+            with open(f"{dataset_root_path}/{i}/Problem description body.txt", 'r', encoding='UTF-8') as f:
+                problem_Description_Subject = f.read()
+            # ------------------------------------------- Input_Description ---------------------------------#
+            with open(f"{dataset_root_path}/{i}/Input describe.txt", 'r', encoding='UTF-8') as f:
+                Input_Description = f.read()
+            # ------------------------------------------- Output_Description ---------------------------------#
+            with open(f"{dataset_root_path}/{i}/Output describe.txt", 'r', encoding='UTF-8') as f:
+                Output_Description = f.read()
             # ------------------------------------------- 输入输出样例测试 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/输入输出样例测试.txt", 'r', encoding='UTF-8') as f:
-                输入输出样例测试 = f.read()
-            # ------------------------------------------- Note描述 ---------------------------------#
-            with open(f"{数据集根路径}/{某条}/Note描述.txt", 'r', encoding='UTF-8') as f:
-                Note描述 = f.read()
-
-            输入输出样例测试和Note描述 = 输入输出样例测试 + Note描述
+            with open(f"{dataset_root_path}/{i}/I_O sample tests and Note description.txt", 'r', encoding='UTF-8') as f:
+                Input_output_sample_tests_and_Note_description = f.read()
 
             # ============================================================= 特征 ====================================#
-            慢速代码集列表 = os.listdir(f"{数据集根路径}/{某条}/acc_tle_solutions")
+            Slow_code_set_list = os.listdir(f"{dataset_root_path}/{i}/acc_tle_solutions")
 
-            # ============================================== 导入 某条 特征集 ===================================#
-            for 某代码 in 慢速代码集列表:
-                with open(f"{数据集根路径}/{某条}/acc_tle_solutions/{某代码}", 'r', encoding='UTF-8') as f:
-                    某慢速代码 = f.read()
+            # ============================================== 导入 i 特征集 ===================================#
+            for a_code in Slow_code_set_list:
+                with open(f"{dataset_root_path}/{i}/acc_tle_solutions/{a_code}", 'r', encoding='UTF-8') as f:
+                    certain_slow_code = f.read()
 
                 # ------------------------------- 缩进代码 ----------------------#
-                某慢速代码 = 缩进代码函数(某慢速代码)
-                某慢速代码张量字典 = self.Token化词表(某慢速代码, return_tensors="pt")
-                if len(某慢速代码张量字典["input_ids"][0]) > 768:
-                    print(f'\033[0:34m删选， 过大的， 第 {某条} 条的长度为: {len(某慢速代码张量字典["input_ids"][0])}。某慢速代码张量字典["input_ids"]>2048 033[m')
+                certain_slow_code = Indent_code_functions(certain_slow_code)
+                certain_slow_code_dictionary = self.Tokenized(certain_slow_code, return_tensors="pt")
+                if len(certain_slow_code_dictionary["input_ids"][0]) > 768:
+                    # print(f'\033[0:34m删选， 过大的， 第 {i} 条的长度为: {len(certain_slow_code_dictionary["input_ids"][0])}。certain_slow_code_dictionary["input_ids"]>2048 033[m')
                     continue
 
-                # ---------------------------------------- 数据原路径 ----------------------------------------------#
-                数据原路径 = f"{数据集根路径}/{某条}/acc_tle_solutions/{某代码}"
+                # ---------------------------------------- Data_original_path ----------------------------------------------#
+                Data_original_path = f"{dataset_root_path}/{i}/acc_tle_solutions/{a_code}"
                 # --------------------------------- 最小单位 ---------------------#
-                某条数据元组 = (标题,问题描述主体,Input描述,Output描述,输入输出样例测试和Note描述, 某慢速代码, 标签代码, 数据原路径)
+                A_data_tuple = (title,problem_Description_Subject,Input_Description,Output_Description,Input_output_sample_tests_and_Note_description, certain_slow_code, label_code, Data_original_path)
 
-                # -------------------------- 加入总数据列表 -----------#
-                总数据列表.append(某条数据元组)
+                # -------------------------- 加入total_Data_List -----------#
+                total_Data_List.append(A_data_tuple)
 
-        print(f'\033[0:35m========================== 已加载 {len(总数据列表)} 条 test_code 数据 ==================\033[m')
+        print(f'\033[0:35m========================== 已load {len(total_Data_List)} 条 test_code 数据 ==================\033[m')
 
-        self.总数据列表 = 总数据列表
+        self.total_Data_List = total_Data_List
 
 
     def __len__(self):
-        return len(self.总数据列表)
+        return len(self.total_Data_List)
 
     # ========================================= 迭代遍历函数 =========================================#
-    def __getitem__(self, 索引):
+    def __getitem__(self, index):
 
-        # --------------------(标题,问题描述主体,Input描述,Output描述,输入输出样例测试,Note描述, 某慢速代码, 标签代码, 数据原路径)--------#
-        样本列表 = self.总数据列表[索引]
+        # --------------------(title,problem_Description_Subject,Input_Description,Output_Description,输入输出样例测试,Note描述, certain_slow_code, label_code, Data_original_path)--------#
+        Sample_List = self.total_Data_List[index]
 
-        return 样本列表
+        return Sample_List
 
 
-def 缩进代码函数(代码字符串):
+def Indent_code_functions(Code_String):
     """
-    给定的代码字符串，以 Github 的方式 重新缩进它
-    Given code string, reindent it in the same way that the Github 数据集 was indented
+    给定的Code_String，以 Github 的方式 重新缩进它
+    Given code string, reindent it in the same way that the Github Dataset was indented
     """
     # --------------------------------- 可变字符串_io.stringIO操作 ---------------------------------#
-    代码字符串 = io.StringIO(代码字符串)
-    缩进后代码字符串 = io.StringIO()
+    Code_String = io.StringIO(Code_String)
+    Code_string_after_indentation = io.StringIO()
 
     run_reindent(
-        代码字符串,
-        缩进后代码字符串,
+        Code_String,
+        Code_string_after_indentation,
         config={
             "dry-run": False,
             "help": False,
@@ -155,31 +148,4 @@ def 缩进代码函数(代码字符串):
     )
 
     # ------------------- 获取对象值 ---------------#
-    return 缩进后代码字符串.getvalue()
-
-
-if __name__ == '__main__':
-
-    Token化词表 = transformers.GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-125M")
-
-    训练集 = 训练集Dataset类(
-        模型="EleutherAI/gpt-neo-125M",
-        最大Token数=2048
-    )
-
-    e = 训练集[0]
-    print(e)
-    print("------- input_ids ------------------------------------------------------------------------------------")
-    print(Token化词表.decode(e['input_ids']))
-
-    print("------- labels ------------------------------------------------------------------------------------")
-    labels = e['labels']
-    print(f"原始标签：{labels}")
-
-    for 某id in range(len(labels)):
-        if labels[某id] == -100:
-            labels[某id] = Token化词表.eos_token_id
-    print(f"一步处理标签：{labels}")
-
-    labels_str = Token化词表.decode(labels)
-    print(f"标签：{labels_str}")
+    return Code_string_after_indentation.getvalue()

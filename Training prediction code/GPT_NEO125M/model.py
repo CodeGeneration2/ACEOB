@@ -17,102 +17,48 @@ import torch
 # ######################################################## 搭建 全连接神经网络回归网络 #################################
 class Modle(nn.Module):
     # =========================================== 初始化 =======================#
-    def __init__(self,命令行参数):
+    def __init__(self,args):
         super(Modle, self).__init__()
 
-        # ============================ 如果有已经训练的本地模型， 则使用已经训练的本地模型 ===========================#
-        if 命令行参数.是否使用已训练本地模型:
-            print(f'\033[0:34m使用已训练本地模型，命令行参数.是否使用已训练本地模型：{命令行参数.是否使用已训练本地模型} \033[m')
+        # ============================ 如果有已经训练的本地model， 则使用已经训练的本地model ===========================#
+        if args.Whether_to_use_trained_local_mods:
+            print(f'\033[0:34m使用已训练本地model，args.Whether_to_use_trained_local_mods：{args.Whether_to_use_trained_local_mods} \033[m')
 
-            # ---------------------------------------- 最终输出层 ----------------------------------------#
-            self.最终输出层 = transformers.GPTNeoForCausalLM.from_pretrained(f"{命令行参数.已训练本地模型路径}/最终输出层/")
+            # ---------------------------------------- Final_output_layer ----------------------------------------#
+            self.Final_output_layer = transformers.GPTNeoForCausalLM.from_pretrained(f"{args.Generated_models}/Final_output_layer/")
 
-        # ================================ 如果没有已经训练的 使用 初始模型 ================================#
+        # ================================ 如果没有已经训练的 使用 初始model ================================#
         else:
-            print(f'\033[0:34m 不 使用已训练本地模型，命令行参数.是否使用已训练本地模型：{命令行参数.是否使用已训练本地模型} \033[m')
+            print(f'\033[0:34m 不 使用已训练本地model，args.Whether_to_use_trained_local_mods：{args.Whether_to_use_trained_local_mods} \033[m')
 
-            # ---------------------------------------- 最终输出层 ----------------------------------------#
-            self.最终输出层 = transformers.GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")
+            # ---------------------------------------- Final_output_layer ----------------------------------------#
+            self.Final_output_layer = transformers.GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-125M")
 
 
     # ################################################## 定义网络的向前传播路径 #########################################
-    def forward(self, 特征列表):
+    def forward(self, Feature_List):
         # ------------------------------- 分解 ------------------------------#
-        问题文本, 某慢速代码, 标签代码 = 特征列表
+        Question_text, certain_slow_code, label_code = Feature_List
 
-        # ---------------------------------------- 标签代码处理 ----------------------------------------#
-        标签张量 = 标签代码["input_ids"].clone().detach()
-        for i in range(len(标签张量)):
-            for j in range(len(标签张量[i])):
-                if 标签张量[i, j] == 0:
-                    标签张量[i, j] = -100
+        # ---------------------------------------- label_code处理 ----------------------------------------#
+        Label_Tensor = label_code["input_ids"].clone().detach()
+        for i in range(len(Label_Tensor)):
+            for j in range(len(Label_Tensor[i])):
+                if Label_Tensor[i, j] == 0:
+                    Label_Tensor[i, j] = -100
 
         # ----------------------------------- 特殊处理 --------------------------------#
 
 
-        # ---------------------------------------- 最终输出层 ----------------------------------------#
-        最终输出 = self.最终输出层(**问题文本, labels=标签张量)
+        # ---------------------------------------- Final_output_layer ----------------------------------------#
+        try:
+            Final_Output = self.Final_output_layer(**Question_text, labels=Label_Tensor)
+        except :
+            Final_Output = self.Final_output_layer(**Question_text)
+
 
         # ----------------------------------- 输出 -------------------
-        return 最终输出
-
-
-if __name__ == '__main__':
-    """
-    # tokenizer1 = BertTokenizer.from_pretrained("Bert_small_权重/vocab.txt")
-    tokenizer = BertTokenizer.from_pretrained("Bert_small_权重/")
-    # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    config = BertConfig.from_json_file("Bert_small_权重/config.json")
-    model = BertModel.from_pretrained("Bert_small_权重/", config=config)
-
-    print(model)
-
-    inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
-    outputs = model(**inputs)
-
-    last_hidden_states = outputs.last_hidden_state
-
-
-
-    last_hidden_states = 33321
-"""
-
-    training_args = Seq2SeqTrainingArguments(
-        output_dir="./results",
-        evaluation_strategy="epoch",
-        learning_rate=2e-5,
-        per_device_train_batch_size=1,
-        per_device_eval_batch_size=1,
-        weight_decay=0.01,
-        save_total_limit=3,
-        num_train_epochs=10,
-        fp16=True,
-    )
-
-    tokenizer = BertTokenizer.from_pretrained("Bert_small_权重/")
-    model = Modle()
-    inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
-
-    trainer = Seq2SeqTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=[inputs, inputs],
-
-        tokenizer=tokenizer,
-
-    )
-
-    # tokenizer1 = BertTokenizer.from_pretrained("Bert_small_权重/vocab.txt")
-
-    # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-
-
-    trainer.train()
-
-    print("wd")
-
-
-
+        return Final_Output
 
 
 
