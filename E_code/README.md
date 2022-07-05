@@ -14,7 +14,6 @@ You can run the train.py file directly for training and prediction
 We use the following command to run and train.
 
     train.py  \
-    --device=0  \
     --epochs=30  \
     --batch-size=1  \
     --gradient_accumulation=32  \
