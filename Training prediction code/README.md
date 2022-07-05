@@ -13,7 +13,16 @@ You can run the train.py file directly for training and prediction
 
 We use the following command to run and train.
 
-    train.py
+    train.py  \
+    --save-dir=/path/to/save_dir  \
+    --load=/path/to/model \  # Can be used to restart from checkpoint
+    --apps-train-files ~/apps/train \
+    --apps-dataroot ~/apps/train/ \
+    --grad-acc-steps=8 \
+    --epochs=10 \
+    --fp16 \
+    --deepspeed deepspeed_config.json \
+    --batch-size-per-replica=2
 
 
 ## No expert group E-code 350M
