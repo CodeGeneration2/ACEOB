@@ -2,8 +2,13 @@
 
 
 ## How to Use
-The training prediction code is in the [Training prediction code](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Training%20prediction%20code) folder, and the details of how to use it are in the [Training prediction code/README](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/blob/main/Training%20prediction%20code/README.md)
+Since our experiments have one main model, two comparison experimental models and one runtime predictor. Therefore, we have placed the code for these four models separately.
 
+First, you need to extract the ECG.rar zip file to the current folder.
+
+The detailed code and usage for each of these four models are in the respective folders.
+
+Here are the direct links to [E_code](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/E_code), [GPT_NEO 125M](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/GPT_NEO 125M), [No expert group E-code 350M](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/No%20expert%20group%20E-code%20350M), and [Run time predictor](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Run%20time%20predictor).
 
 
 ## DataSet
