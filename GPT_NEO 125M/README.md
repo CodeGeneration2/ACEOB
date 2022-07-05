@@ -8,7 +8,7 @@ We provide a brief description of this GPT_NEO 125M model below.
 
 
 ## GPT_NEO 125M
-The GPT_NEO125M model makes our control model and its code is in the GPT_NEO125M folder.
+The GPT_NEO 125M model makes our control model and its code is in the GPT_NEO125M folder.
 
 You can run the train.py file directly for training and prediction
 
