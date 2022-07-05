@@ -25,38 +25,6 @@ We use the following command to run and train.
     --batch-size-per-replica=2
 
 
-## No expert group E-code 350M
-The no expert group E-code 350M model makes our main control model and its code is in the no expert group E-code 350M folder.
-
-You can run the train.py file directly for training and prediction
-
-We use the following command to run and train.
-
-    train.py
-
-## GPT_NEO125M
-The GPT_NEO125M model makes our control model and its code is in the GPT_NEO125M folder.
-
-You can run the train.py file directly for training and prediction
-
-We use the following command to run and train.
-
-    train.py
-
-## Run time predictor
-### train
-The run time predictor model allows us to train the run time predictor and its code is in the Run time predictor folder.
-
-You can run the train.py file directly for training.
-
-We use the following command to run and train.
-
-    train.py
-    
-    
-### Predictions
-You need to put the code you need to predict the time into the Code set to be predicted folder and then run the Predictive_generation_code.py file
-
 
 
 
