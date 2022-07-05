@@ -3,7 +3,7 @@ Since our experiments have one main model, two control models and a runtime pred
 
 First, you need to extract the ECG.rar archive file to the current folder.
 
-We give a brief description of the 4 models below.
+We provide a brief description of this E_code model below.
 
 
 ## E_code
