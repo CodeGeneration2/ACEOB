@@ -17,7 +17,8 @@ The training prediction code is in the [Training prediction code](https://github
 
 
 ## Diagrammatic figure
-The diagrammatic figure is in the [Diagrammatic figure](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Diagrammatic%20figure) folder.
+In the Efficient-Code-Generation-with-E-Code work, the diagrammatic figure is in the [Diagrammatic figure folder](https://github.com/CodeGeneration2/Diagrammatic-figure/tree/main/Diagrammatic%20figure).
+
 
 
 ## Generated code has been predicted
