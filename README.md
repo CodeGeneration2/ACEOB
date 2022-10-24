@@ -3,35 +3,30 @@
 
 ## How to Use
 
-To use the E_code source code extremely fast: 
+### Implementation Train the model -> predict the generated code -> perform IO test on the generated code.
+#### To use the E_code source code extremely fast: 
 
-Download the Bert-tiny model weights file pytorch_model.bin from huggface and copy it to the Bert_tiny_Opened_expert_group_layer_Weights, Bert_tiny_Weights, Weights_Expert_Group _Integration_Layer in three folders.  Extract the ECG dataset to the E_code folder and change the file name to ECG. Run the train.py file. Implementation Train the model -> predict the generated code -> perform IO test on the generated code.
+1. Extract the ECG dataset to the E_code folder and change the file name to ECG. 
+2. Run the train.py file. 
+
+#### Fast-running classification experiments: 
 
 Set Command_line_parameters.task = 0 to train the E-code model.
 
-Set Command_line_parameters.task = 0
-and set Command_line_parameters.RELU = 1 to train a comparison experiment using the RELU activation function.
+Set Command_line_parameters.task = 0 and set Command_line_parameters.RELU = 1 to train a comparison experiment using the RELU activation function.
 
-Set Command_line_parameters.task = 0, and set Command_line_parameters.
-and set Command_line_parameters. heads = 8 to train a comparison experiment using 8 heads.
+Set Command_line_parameters.task = 0 and set Command_line_parameters. heads = 8 to train a comparison experiment using 8 heads.
 
 Set Command_line_parameters.task = 1 to train the No-expert-E-code model.
+
 Set Command_line_parameters.task = 2 to train the GPT model.
 
-Extremely fast use of Time_Predictor source code:  Extract the ECG dataset to the E_code folder and change the file name to ECG. Run the train.py file to train the model.
-Put the code to be predicted into Code_to_be_predicted and run Prediction_generation_code to automatically predict the code runtime.
+#### Extremely fast use of Time_Predictor source code: 
+1. Extract the ECG dataset to the E_code folder and change the file name to ECG. 
+2. Run the train.py file to train the model.
 
-
-Since our experiments have one main model, two comparison experimental models and one runtime predictor. Therefore, we have placed the code for these four models separately.
-
-First, you need to extract the ECG.rar zip file to the current folder.
-
-The detailed code and usage for each of these four models are in the respective folders.
-
-Here are the direct links to [E_code](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/E_code),  
- [GPT_NEO 125M](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/GPT_NEO%20125M),  
- [No expert group E-code 350M](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/No%20expert%20group%20E-code%20350M),  
- and  [Run time predictor](https://github.com/CodeGeneration2/Efficient-Code-Generation-with-E-Code/tree/main/Run%20time%20predictor).
+3. Put the code to be predicted into Code_to_be_predicted a
+4. Run Prediction_generation_code to automatically predict the code runtime.
 
 
 ## DataSet
@@ -46,7 +41,7 @@ We present each dataset separately in the following.
 
 
 ### [ECG](https://github.com/CodeGeneration2/ECG-dataset)
-  [The ECG dataset](https://github.com/CodeGeneration2/ECG-dataset) is divided into train, dev, and test in a ratio of 8:1:1. The train has 3021 folders, dev and test each have 377 folders, each folder corresponds to a problem, and the folders are sorted according to the difficulty of the problem from easy to challenging. We describe in detail what each problem folder covers in Appendix A. And the derived datasets ECG-CG, ECG-mini, and ECG-clone are divided into datasets in the same way as ECG.
+  [The ECG dataset](https://github.com/CodeGeneration2/ECG-dataset) is divided into train, dev, and test in a ratio of 8:1:1. The train has 3002 folders, dev and test each have 373 folders, each folder corresponds to a problem, and the folders are sorted according to the difficulty of the problem from easy to challenging. We describe in detail what each problem folder covers in Appendix A. And the derived datasets ECG-CG, ECG-mini, and ECG-clone are divided into datasets in the same way as ECG.
 
 The ECG dataset is divided into train, dev, and test in the ratio of 8:1:1. the train has 3021 folders, dev and test each have 377 folders, each folder corresponds to a problem, the folders are sorted according to the difficulty of the problem from easy to challenging, and each problem folder covers the following contents:
 
@@ -73,6 +68,8 @@ The ECG dataset is divided into train, dev, and test in the ratio of 8:1:1. the 
 11.	Output describing.txt. This is one of the parts of the split complete natural language description, that is, the output describing part.
 
 12.	I/O sample testing and note description.txt. This is one part of the split complete natural language description, i.e., the I/O sample test and note description part.
+
+13.	IO Case Test Dictionary.txt. This is the IO test pair dictionary used to calculate the IO test pass rate.
 
 All of the above files are in txt format. The better alternative solution code in the acc_soltuions folder and the inefficient code in the acc_tle_soltuions folder have similar naming rules: number,runtime,runspace.txt, for example, 0,77 ms,284 KB.txt.
 
