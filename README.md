@@ -2,6 +2,26 @@
 
 
 ## How to Use
+
+To use the E_code source code extremely fast: 
+
+Download the Bert-tiny model weights file pytorch_model.bin from huggface and copy it to the Bert_tiny_Opened_expert_group_layer_Weights, Bert_tiny_Weights, Weights_Expert_Group _Integration_Layer in three folders.  Extract the ECG dataset to the E_code folder and change the file name to ECG. Run the train.py file. Implementation Train the model -> predict the generated code -> perform IO test on the generated code.
+
+Set Command_line_parameters.task = 0 to train the E-code model.
+
+Set Command_line_parameters.task = 0
+and set Command_line_parameters.RELU = 1 to train a comparison experiment using the RELU activation function.
+
+Set Command_line_parameters.task = 0, and set Command_line_parameters.
+and set Command_line_parameters. heads = 8 to train a comparison experiment using 8 heads.
+
+Set Command_line_parameters.task = 1 to train the No-expert-E-code model.
+Set Command_line_parameters.task = 2 to train the GPT model.
+
+Extremely fast use of Time_Predictor source code:  Extract the ECG dataset to the E_code folder and change the file name to ECG. Run the train.py file to train the model.
+Put the code to be predicted into Code_to_be_predicted and run Prediction_generation_code to automatically predict the code runtime.
+
+
 Since our experiments have one main model, two comparison experimental models and one runtime predictor. Therefore, we have placed the code for these four models separately.
 
 First, you need to extract the ECG.rar zip file to the current folder.
