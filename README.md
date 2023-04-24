@@ -1,4 +1,4 @@
-# Efficient-Code-Generation-with-E-Code
+# Efficient-Code-Generation-with-GEC
 
 
 ## How to Use
