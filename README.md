@@ -29,7 +29,7 @@ Set Command_line_parameters.task = 2 to train the GPT model.
 4. Run Prediction_generation_code to automatically predict the code runtime.
 
 
-## The GEC Dataset(https://github.com/CodeGeneration2/ECG-dataset)
+## The GEC Dataset(https://github.com/CodeGeneration2/GEC-Dataset)
   
 The GEC (Generation of Efficient Code) dataset is composed of problems from the open programming website CodeforRESs, as the GEC benchmark aims to evaluate how human programmers can improve their code efficiency. Human programmers can understand programming problems and approaches through natural language descriptions and inefficient code. Finally, the model's ability to generate efficient code is assessed using NMMCB scores, RES scores, and IO unit tests.
 
@@ -49,7 +49,7 @@ Medium: These problems may involve more algorithms and more direct issues. Examp
 
 Hard: These problems are the most challenging and reach the level of state-of-the-art programming competitions. The test set has an average of 38 lines of efficient code, requiring proficient mastery of code efficiency for all algorithms to optimize effectively. There are 3,784 hard-level efficient-inefficient code pairs, with 342 pairs designated as the test set.
 
-Although our initial intent in creating the GEC dataset was to evaluate the ability to select efficient algorithms, the GEC dataset is actually a versatile dataset that can be applied to various tasks. For instance, the efficient-inefficient code pairs and the efficient code from multiple algorithm schemes could be of value to research in code generation and code cloning. Consequently, we derived two datasets from the GEC benchmark, namely GEC-CG(https://github.com/CodeGeneration2/ECG-dataset) and GEC-clone(https://github.com/CodeGeneration2/ECG-dataset), with the aim of promoting more innovative research in the fields of code generation and code cloning.
+Although our initial intent in creating the GEC dataset was to evaluate the ability to select efficient algorithms, the GEC dataset is actually a versatile dataset that can be applied to various tasks. For instance, the efficient-inefficient code pairs and the efficient code from multiple algorithm schemes could be of value to research in code generation and code cloning. Consequently, we derived two datasets from the GEC benchmark, namely GEC-CG(https://github.com/CodeGeneration2/GEC-CG-DataSet) and GEC-clone(https://github.com/CodeGeneration2/GEC-clone-DataSet), with the aim of promoting more innovative research in the fields of code generation and code cloning.
 
 The GEC-CG dataset contains only natural language (NL) descriptions and their corresponding valid ground-truth code, featuring a structure similar to the APPS dataset.
 
