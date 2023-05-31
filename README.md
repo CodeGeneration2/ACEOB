@@ -36,4 +36,4 @@ Each data point in the GEC-clone dataset includes two distinct code implementati
 
 To calculate the RES scores for partial codes, we trained a code running time predictor using CodeT5-base to predict the running time of the code. The fine-tuning settings for this predictor were the same as those for the previously mentioned CodeT5 models. The predictor is fine-tuned using the GEC dataset. Unlike the GEC task, the “input feature” of the predictor refers to code, and the “label” used for gradient propagation is the code execution time (obtained from the codeforces website).
 
-The model parameters for the runtime predictor are [here](https://drive.google.com/file/d/1YRXfFuzHq1TsNMpAivPYaUySsbSV2Nmt/view?usp=sharing).
+The model parameters for the runtime predictor are here https://drive.google.com/file/d/1YRXfFuzHq1TsNMpAivPYaUySsbSV2Nmt/view?usp=sharing.
