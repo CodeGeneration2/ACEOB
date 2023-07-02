@@ -45,12 +45,15 @@ of its execution.
 Each row corresponds to an efficient-inefficient code pair, consisting of inefficient code
 (long running time) and efficient code (short running time).
 
-[对比图.pdf](https://github.com/CodeGeneration2/ACEOB/files/11928907/default.pdf)
+![原始绘图数据6 drawio (1)](https://github.com/CodeGeneration2/ACEOB/assets/95161813/1b1aa5a4-e820-4c91-9052-6b28b02a168b)
 
 
-## ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+
+## Dataset
 
 ![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
+
+### ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
 
 We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
 The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
@@ -78,7 +81,7 @@ challenging level (level 27).
 
 
 
-## ACEOB-NPI: The Training Set for NPI Score Predictor (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+### ACEOB-NPI: The Training Set for NPI Score Predictor (https://github.com/CodeGeneration2/GEC-CG-DataSet)
 
 It is well known that we cannot judge the efficiency of codes implementing different functionalities merely by their
 execution times. For instance, a code implementing a simple functionality may have an execution time of 100 ms, while
@@ -95,7 +98,7 @@ contains a total of 661,496 training entries.
 
 
 
-## ACEOB Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+### ACEOB Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
 
 The ACEOB dataset contains a plethora of efficient-inefficient code pairs. After the clustering filtering in Section
 5.7, each problem features a set of inefficient and efficient codes. In the IC2EC task, we believe that the EC should
