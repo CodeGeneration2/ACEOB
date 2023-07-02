@@ -137,7 +137,7 @@ respectively.
 
 
 
-## NPI Score Predictor
+## NPI Score Predictor （https://drive.google.com/file/d/1XjWxYjBi6uLs5Pw-EAfzngJvGOaSglCS/view?usp=sharing）
 
 When an IC is optimized into EC by a model, under ideal conditions (having the maximum/minimum code running
 time that implements IC functionality, with the efficient code able to pass I/O unit tests). However, these ideal conditions are often unattainable. Despite the ACEOB dataset
@@ -150,7 +150,7 @@ model and fine-tuned it on the ACEOB-NPI dataset. Unlike the IC2EC task, the “
 code itself, while the “labels” used for gradient propagation are NPI scores. In the experimental section, we incorporate
 the NPI score predictor as the NPI filter into the model, resulting in a substantial enhancement in model performance.
 
-The parameters of the trained model are here.
+The parameters of the trained model are here（https://drive.google.com/file/d/1XjWxYjBi6uLs5Pw-EAfzngJvGOaSglCS/view?usp=sharing）.
 
 
 ## Models
