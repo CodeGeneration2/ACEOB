@@ -23,6 +23,7 @@ However, we found that the current cutting-edge AI model—ChatGPT—does not pe
 in the task of code efficiency optimization. 
 
 
+![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
 
 
 ## ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
@@ -120,8 +121,7 @@ respectively.
 ## NPI Score Predictor
 
 When an IC is optimized into EC by a model, under ideal conditions (having the maximum/minimum code running
-time that implements IC functionality, with the efficient code able to pass I/O unit tests), the NPI score can be directly
-calculated through formula 4. However, these ideal conditions are often unattainable. Despite the ACEOB dataset
+time that implements IC functionality, with the efficient code able to pass I/O unit tests). However, these ideal conditions are often unattainable. Despite the ACEOB dataset
 having the maximum/minimum code running time and I/O unit tests, the use of NPI scores is still quite limited. To
 enable the use of NPI scores to evaluate code efficiency for non-compilable code and other datasets, we specifically
 trained an NPI score predictor to address this challenge.
