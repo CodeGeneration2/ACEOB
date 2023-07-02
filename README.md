@@ -45,8 +45,7 @@ of its execution.
 Each row corresponds to an efficient-inefficient code pair, consisting of inefficient code
 (long running time) and efficient code (short running time).
 
-[Uploading 对比图.pdf…]()
-
+[对比图.pdf](https://github.com/CodeGeneration2/ACEOB/files/11928907/default.pdf)
 
 
 ## ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
