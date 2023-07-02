@@ -150,6 +150,8 @@ model and fine-tuned it on the ACEOB-NPI dataset. Unlike the IC2EC task, the “
 code itself, while the “labels” used for gradient propagation are NPI scores. In the experimental section, we incorporate
 the NPI score predictor as the NPI filter into the model, resulting in a substantial enhancement in model performance.
 
+The parameters of the trained model are here.
+
 
 ## Models
 
@@ -177,3 +179,7 @@ multiple programming languages, supporting automated code generation and program
 • ChatGPT. ChatGPT possesses strong capabilities in code generation. It not only understands and interprets
 programming requirements but also generates corresponding code snippets according to these requirements, effectively enhancing development efficiency. Particularly in handling common programming tasks and problems,
 its prediction and code generation abilities are extremely precise. In this context, we used gpt-3.5-turbo model.
+
+The parameters of the trained model are here.
+
+The code for model generation is here.
