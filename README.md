@@ -23,9 +23,11 @@ However, we found that the current cutting-edge AI model—ChatGPT—does not pe
 in the task of code efficiency optimization. 
 
 
+
+
 ## ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
 
-We utilized the data collected in Section 5.2 to systematically assemble the ACEOB-Ori dataset.
+We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
 The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
 
 • A total of 5,262 problems. Each problem includes a Natural Language description (incorporating the problem
@@ -35,8 +37,7 @@ length of their natural language descriptions is 578 words. Furthermore, we have
 from Section 2 and included it here.
 
 • 901,038 code entries. These code entries were uniformly sampled from all codes on Codeforces, based on their
-execution time. Each code entry contains information about its running time, used space, and NPI score (refer
-to Section 6.4).
+execution time. Each code entry contains information about its running time, used space, and NPI score.
 
 • I/O unit tests. These are split into public and hidden types. The publicly available I/O unit tests, just like NL,
 serve as inputs. The hidden I/O unit tests are utilized to assess the functionality of the code, determining its
@@ -50,8 +51,82 @@ associated with 2.5 algorithm labels.
 • 28 levels of difficulty categories. They range from the simplest entry-level difficulty (level 0) to the most
 challenging level (level 27).
 
-## The predictor
 
-To calculate the RES scores for partial codes, we trained a code running time predictor using CodeT5-base to predict the running time of the code. The fine-tuning settings for this predictor were the same as those for the previously mentioned CodeT5 models. The predictor is fine-tuned using the GEC dataset. Unlike the GEC task, the “input feature” of the predictor refers to code, and the “label” used for gradient propagation is the code execution time (obtained from the codeforces website).
 
-The model parameters for the runtime predictor are here https://drive.google.com/file/d/1YRXfFuzHq1TsNMpAivPYaUySsbSV2Nmt/view?usp=sharing.
+## ACEOB-NPI: The Training Set for NPI Score Predictor (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+
+It is well known that we cannot judge the efficiency of codes implementing different functionalities merely by their
+execution times. For instance, a code implementing a simple functionality may have an execution time of 100 ms, while
+another code implementing a more complex functionality may take 500 ms. We cannot simply conclude that the former
+is more efficient than the latter. Although time complexity can be used to assess algorithmic efficiency, determining
+the worst-case time complexity for an algorithm is undecidable. Furthermore, a single piece of code often employs
+multiple algorithms, which further complicates matters. In response to the pressing need within the coding efficiency
+community for a standardized measure of code efficiency, we propose the NPI score. We plan to train
+a model to predict a code’s NPI score, which naturally requires a novel training dataset.
+We created the ACEOB-NPI dataset to train models to predict NPI scores. First, we calculated the NPI score for each
+code within the dataset, appending it to the code name. We then extracted all the codes from the dataset to compose the
+ACEOB-NPI dataset. The Efficiency Decoding and Code Prediction-NPI Score (abbreviated as ACEOB-NPI) dataset
+contains a total of 661,496 training entries.
+
+
+
+## ACEOB Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+
+The ACEOB dataset contains a plethora of efficient-inefficient code pairs. After the clustering filtering in Section
+5.7, each problem features a set of inefficient and efficient codes. In the IC2EC task, we believe that the EC should
+remain as similar as possible to the IC. Therefore, we combined the inefficient and efficient code sets
+into efficient-inefficient code pairs based on CodeBLEU scores, following the concept of “Algorithmic Parent-Child
+Pairs” . These code pairs help the model to comprehend code efficiency. However, this pairing method
+implies that each IC uniquely corresponds to an EC, a supposition that is flawed. An IC should not have just one code
+solution, as different efficient solutions, corresponding to different codes, often exist for a single IC. As a result, we
+supplemented each efficient-inefficient code pair with a set of efficient codes using different algorithmic solutions.
+These alternative efficient codes were used to calculate the IOCCB scores.
+
+The ACEOB dataset was divided into training and test sets based on time. Randomized splitting methods, such as
+those used in APPS, have certain drawbacks because many model’s pre-training datasets already contain their test sets.
+Therefore, we split the dataset temporally, designating problems that appeared after May 4, 2022 (the distribution date
+of the last model, Polycode) as the test set.
+
+Key components of the Automatic Code Efficiency Optimization Benchmark (ACEOB) dataset include:
+
+• 95522 efficient-inefficient code pairs, 9,415 of which were allocated to the test set.
+
+• I/O unit tests. There are typically 1-2 public I/O unit tests, while hidden I/O unit tests average 39 per data entry.
+
+• Reference efficient codes. Used for calculating IOCCB scores, each data entry averages 40 reference efficient
+codes.
+
+• 36 algorithm tags. Algorithm tags recommend the algorithmic approach for solving the problem, e.g., math,
+geometry, and greedy. On average, each data entry includes 2.25 algorithm tags. Figure 6 illustrates the
+distribution of algorithm labels within the 9,415 samples of the test set from the ACEOB dataset.
+
+• 19 difficulty categories, ranging from the simplest entry-level difficulty 0 to the most challenging difficulty
+18 (sourced from the Codeforces website). These difficulties correspond to the complexity of the code’s
+functionality. We subdivided them into three higher-level difficulty categories: Introductory (difficulty 0),
+Interview (difficulties 1-3), and Competition (difficulties 4-18). In the ACEOB dataset’s test set of 9,415 entries,
+these three difficulty levels comprise 5,428 (Introductory), 2,232 (Interview), and 1,755 (Competition) entries
+respectively.
+
+
+
+
+
+
+
+
+
+
+
+## NPI Score Predictor
+
+When an IC is optimized into EC by a model, under ideal conditions (having the maximum/minimum code running
+time that implements IC functionality, with the efficient code able to pass I/O unit tests), the NPI score can be directly
+calculated through formula 4. However, these ideal conditions are often unattainable. Despite the ACEOB dataset
+having the maximum/minimum code running time and I/O unit tests, the use of NPI scores is still quite limited. To
+enable the use of NPI scores to evaluate code efficiency for non-compilable code and other datasets, we specifically
+trained an NPI score predictor to address this challenge.
+
+The NPI score predictor is a model designed to forecast code NPI scores. We used CodeT5-base as the base
+model and fine-tuned it on the ACEOB-NPI dataset. Unlike the IC2EC task, the “input features” of the predictor are the
+code itself, while the “labels” used for gradient propagation are NPI scores. In the experimental section, we incorporate
+the NPI score predictor as the NPI filter into the model, resulting in a substantial enhancement in model performance.
