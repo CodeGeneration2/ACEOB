@@ -180,6 +180,22 @@ multiple programming languages, supporting automated code generation and program
 programming requirements but also generates corresponding code snippets according to these requirements, effectively enhancing development efficiency. Particularly in handling common programming tasks and problems,
 its prediction and code generation abilities are extremely precise. In this context, we used gpt-3.5-turbo model.
 
+
+
 The parameters of the trained model are here.
+
+• CodeT5-small (60M). [**CodeT5-small (60M)**](https://drive.google.com/file/d/1QwzvxJuWxsdcoHMGSNFwvzF7Zf_RDjcC/view?usp=sharing).
+
+• CodeT5-base (220M). [**CodeT5-base (220M)**](https://drive.google.com/file/d/18lmIO6I1GrXSbqemcEguuQBkOquGlflj/view?usp=sharing).
+
+• CodeT5-large-ntp-py (770M). [**CodeT5-small (60M)**]().
+
+• CodeGen-mono (350M). [**CodeT5-small (60M)**](https://drive.google.com/file/d/1hCwV1TnFTaQQ049iLMFMDBTXH0CpE2_O/view?usp=sharing).
+
+• PolyCoder (0.4B). [**CodeT5-small (60M)**](https://drive.google.com/file/d/1ImfNznQ7Ybl6gidkj9G_yh5Z_ueq-vbs/view?usp=sharing).
+
+
+
+
 
 The code for model generation is here.
