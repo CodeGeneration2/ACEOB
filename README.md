@@ -2,6 +2,7 @@
 
 ![论文流程图-2](https://github.com/CodeGeneration2/ACEOB/assets/95161813/0fed48ab-d004-4379-a79a-3ed70244e975)
 
+
 ## A B S T R A C T
 
 As the gains from Moore’s Law gradually diminish, the performance and efficiency of software
@@ -25,6 +26,26 @@ However, we found that the current cutting-edge AI model—ChatGPT—does not pe
 in the task of code efficiency optimization. 
 
 
+## Highlights
+
+• ACEOB Dataset: We introduce the first benchmark dataset specifically designed for Python code efficiency
+optimization tasks.
+
+• IOCCB Score: We designed a variant of the CodeBLEU score to evaluate the model’s capability of generating
+efficient code.
+
+• NPI Score: We develop a novel evaluation metric that enables efficiency assessment of code without the necessity
+of its execution.
+
+• NPI Filter: We present a new type of filter intended for the ranking of code based on its efficiency.
+
+
+## Example of IC2EC task. 
+
+Each row corresponds to an efficient-inefficient code pair, consisting of inefficient code
+(long running time) and efficient code (short running time).
+
+[Uploading 对比图.pdf…]()
 
 
 
@@ -114,14 +135,6 @@ respectively.
 
 
 
-
-
-
-
-
-
-
-
 ## NPI Score Predictor
 
 When an IC is optimized into EC by a model, under ideal conditions (having the maximum/minimum code running
@@ -134,3 +147,31 @@ The NPI score predictor is a model designed to forecast code NPI scores. We used
 model and fine-tuned it on the ACEOB-NPI dataset. Unlike the IC2EC task, the “input features” of the predictor are the
 code itself, while the “labels” used for gradient propagation are NPI scores. In the experimental section, we incorporate
 the NPI score predictor as the NPI filter into the model, resulting in a substantial enhancement in model performance.
+
+
+## Models
+
+In this study, we evaluated the effects of fine-tuning several different LLMs on the ACEOB dataset, including the
+CodeGen model, PolyCoder model , and the CodeT5 series models Both the CodeGen and PolyCoder
+models are decoder models. The CodeT5 series models are variants based on the T5 model, specifically designed for
+code generation. Additionally, we also evaluated the performance of the ChatGPT model on ACEOB. We provide
+an overview of the models we used:
+
+• CodeT5-small (60M). As the smallest variant of the CodeT5 models, it offers good performance with low
+computational resource demands.
+
+• CodeT5-base (220M). A medium-sized model in the CodeT5 series, it strikes a balance between performance
+and computational resource requirements.
+
+• CodeT5-large-ntp-py (770M). This is the largest variant of the CodeT5 models, with additional pre-training
+on a Python dataset to focus on generating Python code. Note that this model was proposed by CodeRL.
+
+• CodeGen-mono (350M). The CodeGen model is a code generation model based on GPT-2, with solid
+performance and wide-ranging programming language support.
+
+• PolyCoder (0.4B). The PolyCoder model is a novel deep learning model focused on encoding and decoding
+multiple programming languages, supporting automated code generation and program understanding.
+
+• ChatGPT. ChatGPT possesses strong capabilities in code generation. It not only understands and interprets
+programming requirements but also generates corresponding code snippets according to these requirements, effectively enhancing development efficiency. Particularly in handling common programming tasks and problems,
+its prediction and code generation abilities are extremely precise. In this context, we used gpt-3.5-turbo model.
