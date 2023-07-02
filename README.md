@@ -23,10 +23,12 @@ However, we found that the current cutting-edge AI model—ChatGPT—does not pe
 in the task of code efficiency optimization. 
 
 
-![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
+
 
 
 ## ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+
+![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
 
 We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
 The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
