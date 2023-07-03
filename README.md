@@ -53,7 +53,8 @@ Each row corresponds to an efficient-inefficient code pair, consisting of ineffi
 
 ![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
 
-### ACEOB-Ori Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+### [**ACEOB-Ori Dataset**](https://drive.google.com/file/d/1ANQB85mwh8lspJ3yx80Y5pEvpuHSV8wv/view?usp=sharing)
+
 
 We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
 The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
@@ -81,7 +82,7 @@ challenging level (level 27).
 
 
 
-### ACEOB-NPI: The Training Set for NPI Score Predictor (https://github.com/CodeGeneration2/GEC-CG-DataSet)
+### [**ACEOB-NPI Dataset**](https://github.com/CodeGeneration2/GEC-CG-DataSet](https://drive.google.com/file/d/1r45TEVEvCsypIJeogZ0mJ3ZMGlb40cV7/view?usp=sharing): The Training Set for NPI Score Predictor ([))
 
 It is well known that we cannot judge the efficiency of codes implementing different functionalities merely by their
 execution times. For instance, a code implementing a simple functionality may have an execution time of 100 ms, while
@@ -95,7 +96,6 @@ We created the ACEOB-NPI dataset to train models to predict NPI scores. First, w
 code within the dataset, appending it to the code name. We then extracted all the codes from the dataset to compose the
 ACEOB-NPI dataset. The Efficiency Decoding and Code Prediction-NPI Score (abbreviated as ACEOB-NPI) dataset
 contains a total of 661,496 training entries.
-
 
 
 ### ACEOB Dataset (https://github.com/CodeGeneration2/GEC-CG-DataSet)
@@ -199,13 +199,15 @@ The parameters of the trained model are here.
 
 The code for model generation is here.
 
-• [**CodeGen-mono (350M)**]().
+• [**CodeGen-mono (350M)**](https://drive.google.com/file/d/1gMBJftVAgQ5rkK7Ve-s8t3c7wn8PW1Cv/view?usp=sharing).
 
-• [**PolyCoder (0.4B).**]().
+• [**PolyCoder (0.4B).**](https://drive.google.com/file/d/1bQgpkbcYi-W3Ro2C5LUUUjbXPxHnN9qN/view?usp=sharing).
 
-• [**CodeT5-small (60M)**]().
+• [**CodeT5-small (60M)**](https://drive.google.com/file/d/16DCKcTFtsJsmX3KK7Jx8j7hPpLLBg04E/view?usp=sharing).
 
-• [**CodeT5-base (220M)**]().
+• [**CodeT5-base (220M)**](https://drive.google.com/file/d/19ZPVBIBFHYtdQe8oUgScyDNRiGQvzzLZ/view?usp=sharing).
 
-• [**CodeT5-large-ntp-py**]().
+• [**CodeT5-large-ntp-py**](https://drive.google.com/file/d/1j9h-rAB8hhaLL2bh0BUY-PgxI-5flrT9/view?usp=sharing).
+
+• [**ChatGPT**](https://drive.google.com/file/d/1x4VYlGhEifvtMn1GCp4FHc-4RFaileFp/view?usp=sharing).
 
