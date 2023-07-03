@@ -82,7 +82,7 @@ challenging level (level 27).
 
 
 
-### [**ACEOB-NPI Dataset**](https://github.com/CodeGeneration2/GEC-CG-DataSet](https://drive.google.com/file/d/1r45TEVEvCsypIJeogZ0mJ3ZMGlb40cV7/view?usp=sharing): The Training Set for NPI Score Predictor ([))
+### [**ACEOB-NPI Dataset**](https://drive.google.com/file/d/1r45TEVEvCsypIJeogZ0mJ3ZMGlb40cV7/view?usp=sharing) : The Training Set for NPI Score Predictor
 
 It is well known that we cannot judge the efficiency of codes implementing different functionalities merely by their
 execution times. For instance, a code implementing a simple functionality may have an execution time of 100 ms, while
