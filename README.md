@@ -76,6 +76,9 @@ and 100, represent the maximum execution time, median execution time, and minimu
 
 ### [**ACEOB-Ori Dataset**](https://drive.google.com/file/d/1ANQB85mwh8lspJ3yx80Y5pEvpuHSV8wv/view?usp=sharing)
 
+![24RIYQVS~H05_HGX(PG409H](https://github.com/CodeGeneration2/ACEOB/assets/95161813/845ff57b-36ad-4378-92ff-af536b9e990e)
+
+
 
 We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
 The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
@@ -105,6 +108,8 @@ challenging level (level 27).
 
 ### [**ACEOB-NPI Dataset**](https://drive.google.com/file/d/1r45TEVEvCsypIJeogZ0mJ3ZMGlb40cV7/view?usp=sharing) : The Training Set for NPI Score Predictor
 
+
+
 It is well known that we cannot judge the efficiency of codes implementing different functionalities merely by their
 execution times. For instance, a code implementing a simple functionality may have an execution time of 100 ms, while
 another code implementing a more complex functionality may take 500 ms. We cannot simply conclude that the former
@@ -121,6 +126,7 @@ contains a total of 661,496 training entries.
 
 ### [ACEOB Dataset](https://drive.google.com/file/d/1eUoOWPPU_2hHeZER5VNc7Xues1uyKhFx/view?usp=sharing)
 
+
 The ACEOB dataset contains a plethora of efficient-inefficient code pairs. After the clustering filtering in Section
 5.7, each problem features a set of inefficient and efficient codes. In the IC2EC task, we believe that the EC should
 remain as similar as possible to the IC. Therefore, we combined the inefficient and efficient code sets
@@ -136,26 +142,9 @@ those used in APPS, have certain drawbacks because many model’s pre-training d
 Therefore, we split the dataset temporally, designating problems that appeared after May 4, 2022 (the distribution date
 of the last model, Polycode) as the test set.
 
-Key components of the Automatic Code Efficiency Optimization Benchmark (ACEOB) dataset include:
+![CS%~0 MU)A}714D16JF9$FE](https://github.com/CodeGeneration2/ACEOB/assets/95161813/418c9b0e-3582-4236-9168-759838ff3f3d)
 
-• 95522 efficient-inefficient code pairs, 9,415 of which were allocated to the test set.
-
-• I/O unit tests. There are typically 1-2 public I/O unit tests, while hidden I/O unit tests average 39 per data entry.
-
-• Reference efficient codes. Used for calculating IOCCB scores, each data entry averages 40 reference efficient
-codes.
-
-• 36 algorithm tags. Algorithm tags recommend the algorithmic approach for solving the problem, e.g., math,
-geometry, and greedy. On average, each data entry includes 2.25 algorithm tags. Figure 6 illustrates the
-distribution of algorithm labels within the 9,415 samples of the test set from the ACEOB dataset.
-
-• 19 difficulty categories, ranging from the simplest entry-level difficulty 0 to the most challenging difficulty
-18 (sourced from the Codeforces website). These difficulties correspond to the complexity of the code’s
-functionality. We subdivided them into three higher-level difficulty categories: Introductory (difficulty 0),
-Interview (difficulties 1-3), and Competition (difficulties 4-18). In the ACEOB dataset’s test set of 9,415 entries,
-these three difficulty levels comprise 5,428 (Introductory), 2,232 (Interview), and 1,755 (Competition) entries
-respectively.
-
+![OK_M{L@3TX1VJN9X8_%2 ZX](https://github.com/CodeGeneration2/ACEOB/assets/95161813/2fd57a24-7be8-4fa2-a192-5a573fa5ee60)
 
 
 
