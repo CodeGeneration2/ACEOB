@@ -132,7 +132,7 @@ equivalent to another IC, almost without value. Therefore, the value premise of 
 efficient, which requires cost models to assess.
 
 
-We have trained two major cost models: predicting Python code execution time and [predicting Python code NPI
+We have trained two major cost models: [predicting Python code execution time](https://drive.google.com/file/d/1LUWDWatm1KHAlCM0-4lAH-ESkoM8aos4/view?usp=sharing) and [predicting Python code NPI
 scores](https://drive.google.com/file/d/1XjWxYjBi6uLs5Pw-EAfzngJvGOaSglCS/view?usp=sharing). Since predicting NPI is more challenging, the cost model accuracy for predicting execution time is higher
 than that for predicting NPI. However, the NPI score can reflect more information (such as remaining optimization
 space information) and provide effective guidance, which may be more valuable than execution time in some cases.
