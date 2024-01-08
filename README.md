@@ -80,32 +80,6 @@ and 100, represent the maximum execution time, median execution time, and minimu
 
 
 
-We utilized the data collected to systematically assemble the ACEOB-Ori dataset.
-The Automatic Code Efficiency Optimization Benchmark Original (ACEOB-Ori) comprises:
-
-• A total of 5,262 problems. Each problem includes a Natural Language description (incorporating the problem
-statement, time/space constraints, I/O description, and I/O unit test cases/explanation), the URL of the problem
-source, and the URL of the code source. These problems are challenging and complex, given that the average
-length of their natural language descriptions is 578 words. Furthermore, we have organized the statistical data
-from Section 2 and included it here.
-
-• 901,038 code entries. These code entries were uniformly sampled from all codes on Codeforces, based on their
-execution time. Each code entry contains information about its running time, used space, and NPI score.
-
-• I/O unit tests. These are split into public and hidden types. The publicly available I/O unit tests, just like NL,
-serve as inputs. The hidden I/O unit tests are utilized to assess the functionality of the code, determining its
-capability to accomplish tasks. The public I/O unit tests typically range from 1 to 2, while each problem averages
-47 hidden I/O unit tests.
-
-• 36 types of algorithm labels. These algorithm labels represent the recommended algorithmic strategies for
-solving the given problems, with examples including math, geometry, and greedy. On average, each problem is
-associated with 2.5 algorithm labels.
-
-• 28 levels of difficulty categories. They range from the simplest entry-level difficulty (level 0) to the most
-challenging level (level 27).
-
-
-
 ### [**ACEOB-NPI Dataset**](https://drive.google.com/file/d/1r45TEVEvCsypIJeogZ0mJ3ZMGlb40cV7/view?usp=sharing) : The Training Set for NPI Score Predictor
 
 
