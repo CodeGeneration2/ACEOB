@@ -46,6 +46,30 @@ Each row corresponds to an efficient-inefficient code pair, consisting of ineffi
 
 
 
+
+## IOCCB
+
+![CodeBLEU-MAX-5](https://github.com/CodeGeneration2/ACEOB/assets/95161813/2f479292-5b12-4866-a375-7a462cf78926)
+
+IOCCB Score Calculation Process. This figure shows the detailed calculation process of the IOCCB score. The
+process begins with inputting the IC from the Algorithm Father-Son Pair into LLMs to generate the predicted code 𝑔.
+Then, by matching the generated code 𝑔 with ECs and alternate efficient codes to calculate the CodeBLEU score, forming
+the set 𝑂. Additionally, each code will be standardized in terms of variables and function names before matching, forming
+the set 𝑆. Next, we calculate the average of set 𝑂 (𝑂𝑎𝑣𝑔 ), the average of set 𝑆 (𝑆𝑎𝑣𝑔 ), and the maximum of set 𝑆 (𝑆𝑚𝑎𝑥).
+Finally, the IOCCB score is defined as the maximum of set 𝑆 plus the square root of the difference between the average
+of set 𝑆 and set 𝑂, i.e., 𝐵𝑚𝑎𝑥 + √(𝐵𝑎𝑣𝑔 − 𝐴𝑎𝑣𝑔 ).
+
+## NPI
+
+![fig-NPI-Calculation](https://github.com/CodeGeneration2/ACEOB/assets/95161813/6d9f9ddb-f6e2-4a79-82c3-44c120259131)
+
+NPI Metric Calculation Process. This figure details the calculation process of the NPI metric, which is implemented
+in two steps. First, the execution time’s median and minimum values are mapped to the scoring range [50, 100]. Then,
+the execution time’s maximum value and median are mapped to the scoring range [0, 50]. The three key points, 0, 50,
+and 100, represent the maximum execution time, median execution time, and minimum execution time, respectively.
+
+
+
 ## Dataset
 
 ![数据集流程图-6](https://github.com/CodeGeneration2/ACEOB/assets/95161813/85487a1c-c56b-46fa-ad47-7f318e091a68)
