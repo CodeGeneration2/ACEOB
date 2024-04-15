@@ -158,11 +158,6 @@ This repository contains six different cost models designed to support cost esti
 
 ### Model Overview
 
-| Model | Input            | Download Link |
-|-------|------------------|---------------|
-| CodeT5 | Segmented AST   | [Download](#) |
-| ASTNN  | Segmented AST   | [Download](#) |
-| CodeT5 | Code            | [Download](#) |
 
 
 
