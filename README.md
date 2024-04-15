@@ -161,7 +161,7 @@ This repository contains six different cost models designed to support cost esti
 
 | Model |       Input            |                       Predicting NPI                                                  |                                                           Predicting Execution Time              |
 |-------|------------------|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| CodeT5 | Segmented AST   | [Download]() | [Download]() |
+| CodeT5 | Segmented AST   | [Download](https://drive.google.com/file/d/1RowX66rGUlzqpegwv0WBQtRNg4DwuQ-t/view?usp=sharing) | [Download](https://drive.google.com/file/d/1q_R3pbswAJ7Kl9QT76e_PHDQO6DnEPsB/view?usp=sharing) |
 | ASTNN  | Segmented AST   | [Download](https://drive.google.com/file/d/1UbpiL2RHOKbtbWvGjgsz_YmSJy7nLRw2/view?usp=sharing) | [Download](https://drive.google.com/file/d/1kHWm9lBslnqAQq6_gI37YTmk_tzlUwt8/view?usp=sharing) |
 | CodeT5 | Code            | [Download](https://drive.google.com/file/d/1XjWxYjBi6uLs5Pw-EAfzngJvGOaSglCS/view?usp=sharing) | [Download](https://drive.google.com/file/d/1LUWDWatm1KHAlCM0-4lAH-ESkoM8aos4/view?usp=sharing) |
 
