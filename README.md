@@ -194,33 +194,7 @@ programming requirements but also generates corresponding code snippets accordin
 its prediction and code generation abilities are extremely precise. In this context, we used gpt-3.5-turbo model.
 
 
-
-The parameters of the trained model are here.
-
-• [**CodeGen-mono (350M)**](https://drive.google.com/file/d/1hCwV1TnFTaQQ049iLMFMDBTXH0CpE2_O/view?usp=sharing).
-
-• [**PolyCoder (0.4B).**](https://drive.google.com/file/d/1ImfNznQ7Ybl6gidkj9G_yh5Z_ueq-vbs/view?usp=sharing).
-
-• [**CodeT5-small (60M)**](https://drive.google.com/file/d/1QwzvxJuWxsdcoHMGSNFwvzF7Zf_RDjcC/view?usp=sharing).
-
-• [**CodeT5-base (220M)**](https://drive.google.com/file/d/18lmIO6I1GrXSbqemcEguuQBkOquGlflj/view?usp=sharing).
-
-• [**CodeT5-large-ntp-py**](https://drive.google.com/file/d/1VuY5W1j9dQW2QbTSUV49yFV0__mAENjT/view?usp=sharing).
-
-
-
-
 The code for model generation is here.
-
-• [**CodeGen-mono (350M)**](https://drive.google.com/file/d/1gMBJftVAgQ5rkK7Ve-s8t3c7wn8PW1Cv/view?usp=sharing).
-
-• [**PolyCoder (0.4B).**](https://drive.google.com/file/d/1bQgpkbcYi-W3Ro2C5LUUUjbXPxHnN9qN/view?usp=sharing).
-
-• [**CodeT5-small (60M)**](https://drive.google.com/file/d/16DCKcTFtsJsmX3KK7Jx8j7hPpLLBg04E/view?usp=sharing).
-
-• [**CodeT5-base (220M)**](https://drive.google.com/file/d/19ZPVBIBFHYtdQe8oUgScyDNRiGQvzzLZ/view?usp=sharing).
-
-• [**CodeT5-large-ntp-py**](https://drive.google.com/file/d/1j9h-rAB8hhaLL2bh0BUY-PgxI-5flrT9/view?usp=sharing).
 
 • [**ChatGPT**](https://drive.google.com/file/d/1x4VYlGhEifvtMn1GCp4FHc-4RFaileFp/view?usp=sharing).
 
